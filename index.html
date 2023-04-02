@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__information">
+          <img class="profile__avatar" src="./images/profile-image.jpg" alt="profile image">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-btn"></button>
+            <p class="profile__status">Исследователь океана</p>
+          </div>
+          <button class="photo-feed__add-btn">+</button>
+        </div>
+        <div class="popup">
+          <button class="popup__close-btn">
+            <img class="popup__close-icon" src="./images/Close-Icon.svg">
+          </button>
+          <form class="popup__container">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <input type="text" placeholder="Никнейм" class="popup__item_el-name">
+            <input type="text" placeholder="Статус" class="popup__item_el-status">
+            <input type="submit" class="popup__save-btn">
+          </form>
+        </div>
+      </section>
+      <section class="photo-feed">
+        <ul class="photo-feed__list">
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-karachaevsk.jpg" alt="">
+            <h2 class="photo-feed__heading">Карачаевск</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-elbrus.jpg" alt="">
+            <h2 class="photo-feed__heading">Гора Эльбрус</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-dombai.jpg" alt="">
+            <h2 class="photo-feed__heading">Домбай</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-elbrus.jpg" alt="">
+            <h2 class="photo-feed__heading">Гора Эльбрус</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-dombai.jpg" alt="">
+            <h2 class="photo-feed__heading">Домбай</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+          <li class="photo-feed__item">
+            <img class="photo-feed__image" src="./images/photo-feed-karachaevsk.jpg" alt="">
+            <h2 class="photo-feed__heading">Карачаево-Черкесия</h2>
+            <button class="photo-feed__like-btn">
+              <img class="photo-feed__like-icon" src="./images/like-button-not-act.svg" alt="like button">
+            </button>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

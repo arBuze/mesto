@@ -1,0 +1,61 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: #000;
+  font-family: 'Inter', Arial, sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+  width: 100%;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
+  padding: 28px 27px 32px;
+  font-size: 0;
+}
+
+.header__logo {
+  width: 104px;
+  height: 24px;
+}
+
+.content {
+  padding: 0 19px;
+}
+
+.profile {
+  padding: 42px 0 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__information {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile__avatar {
+  width: 120px;
+  border-radius: 50%;
+}
+
+.profile__info {
+  margin: 26px 0 36px;
+}
+
+.profile__edit-btn {
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  background-image: url(./images/Vector.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid #FFFFFF;
+  padding: 5.25px;
+}
