@@ -253,9 +253,12 @@
   border: none;
   background-color: #000;
   background-image: url(./images/close-button.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 0;
   position: absolute;
-  bottom: calc(100% + 10px);
+  bottom: calc(100% + 16px);
   left: calc(100% - 20px);
   transition: opacity .2s ease-out;
 }
@@ -279,7 +282,7 @@
   line-height: 17px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  padding: 0 0 13px;
+  padding: 0 0 10px; /*  */
 }
 
 .popup__item_el_status {
@@ -303,3 +306,90 @@
   opacity: .8;
   cursor: pointer;
 }
+
+@media (min-width: 768px) {
+  .photo-feed__list {
+    grid-template-columns: repeat(2, 282px);
+    grid-template-rows: repeat(3, auto);
+  }
+  .popup__container {
+    padding: 34px 36px 37px;
+  }
+  .popup__heading {
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0 0 46px;
+  }
+  .popup__close-btn {
+    bottom: calc(100% + 8px);
+    left: calc(100% + 8px);
+  }
+  .popup__save-btn {
+    height: 50px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 45px 0 40px;
+  }
+  .header__logo {
+    width: 143px;
+    height: 34px;
+  }
+  .profile {
+    padding: 40px 0 50px;
+  }
+  .profile__container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .profile__information {
+    flex-direction: row;
+  }
+  .profile__info {
+    align-items: flex-start;
+    margin: 0 30px;
+  }
+  .profile__item {
+    justify-content: flex-start;
+  }
+  .profile__name {
+    max-width: calc(100% - 42px);
+    font-size: 42px;
+    line-height: 48px;
+  }
+  .profile__edit-btn {
+    width: 22px;
+    height: 22px;
+    margin-left: 20px;
+    background-size: 11px 11px;
+  }
+  .profile__status {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+  }
+  .profile__add-btn {
+    width: 178px;
+    background-size: 22px 22px;
+  }
+  .photo-feed__list {
+    grid-template-columns: repeat(3, 282px);
+    grid-template-rows: repeat(2, auto);
+  }
+  .footer {
+    margin: 68px auto 58px;
+  }
+  .footer__copyright {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .popup__close-btn {
+    width: 32px;
+    height: 32px;
+  }
+}
+
