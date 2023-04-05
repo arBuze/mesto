@@ -18,12 +18,12 @@
             <div class="profile__info">
               <div class="profile__item">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-btn"></button>
+                <button class="profile__edit-btn" type="button"></button>
               </div>
               <p class="profile__status">Исследователь океана</p>
             </div>
           </div>
-          <button class="profile__add-btn"></button>
+          <button class="profile__add-btn" type="button"></button>
         </div>
       </section>
       <section class="photo-feed">
@@ -32,42 +32,42 @@
             <img class="photo-feed__image" src="./images/photo-feed-karachaevsk.jpg" alt="Сентинский храм">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Карачаевск</h2>
-              <button class="photo-feed__like-btn" id="1"></button>
+              <button class="photo-feed__like-btn" id="1" type="button"></button>
             </div>
           </li>
           <li class="photo-feed__item">
             <img class="photo-feed__image" src="./images/photo-feed-elbrus.jpg" alt="Гора Эльбрус">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Гора Эльбрус</h2>
-              <button class="photo-feed__like-btn" id="2"></button>
+              <button class="photo-feed__like-btn" id="2" type="button"></button>
             </div>
           </li>
           <li class="photo-feed__item">
             <img class="photo-feed__image" src="./images/photo-feed-dombai.jpg" alt="Горы и лес в Домбае">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Домбай</h2>
-              <button class="photo-feed__like-btn" id="3"></button>
+              <button class="photo-feed__like-btn" id="3" type="button"></button>
             </div>
           </li>
           <li class="photo-feed__item">
             <img class="photo-feed__image" src="./images/photo-feed-baikal.jpg" alt="Зимний Байкал">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Байкал</h2>
-              <button class="photo-feed__like-btn" id="4"></button>
+              <button class="photo-feed__like-btn" id="4" type="button"></button>
             </div>
           </li>
           <li class="photo-feed__item">
             <img class="photo-feed__image" src="./images/photo-feed-komi.jpg" alt="Замерзшая река в лесу">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Республика Коми</h2>
-              <button class="photo-feed__like-btn" id="5"></button>
+              <button class="photo-feed__like-btn" id="5" type="button"></button>
             </div>
           </li>
           <li class="photo-feed__item">
             <img class="photo-feed__image" src="./images/photo-feed-church.jpg" alt="Храм Христа Спасителя">
             <div class="photo-feed__data">
               <h2 class="photo-feed__heading">Москва</h2>
-              <button class="photo-feed__like-btn" id="6"></button>
+              <button class="photo-feed__like-btn" id="6" type="button"></button>
             </div>
           </li>
         </ul>
@@ -77,14 +77,16 @@
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
     <div class="popup">
-      <form class="popup__container">
-        <button class="popup__close-btn"></button>
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" placeholder="Никнейм" class="popup__item popup__item_el_name">
-        <input type="text" placeholder="Статус" class="popup__item popup__item_el_status">
-        <input type="submit" value="Сохранить" class="popup__save-btn">
-      </form>
+        <form class="popup__form" method="post" name="profile-form">
+          <input type="text" placeholder="Никнейм" class="popup__item popup__item_el_name" name="nickname">
+          <input type="text" placeholder="Статус" class="popup__item popup__item_el_status" name="status">
+          <input type="submit" value="Сохранить" class="popup__save-btn" name="save-btn">
+        </form>
+      </div>
     </div>
-    <script src="./pages/index.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

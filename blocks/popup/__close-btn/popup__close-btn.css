@@ -2,11 +2,7 @@
   width: 20px;
   height: 20px;
   border: none;
-  background-color: #000;
-  background-image: url(../../../images/close-button.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background: rgba(0, 0, 0, 0) no-repeat center/cover url(../../../images/close-button.svg);
   padding: 0;
   position: absolute;
   bottom: calc(100% + 16px);

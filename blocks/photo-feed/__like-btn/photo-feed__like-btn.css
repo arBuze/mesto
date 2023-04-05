@@ -1,9 +1,7 @@
 .photo-feed__like-btn {
   width: 22px;
   height: 19px;
-  background-color: #fff;
-  background-image: url(../../../images/like-button-not-act.svg);
-  background-size: cover;
+  background: #fff center/cover url(../../../images/like-button-not-act.svg);
   border: none;
   padding: 0;
   transition: opacity .2s ease-out;
