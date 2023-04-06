@@ -2,7 +2,7 @@ let content = document.querySelector('.content');
 let editButton = document.querySelector('.profile__edit-btn');
 
 let popup = document.querySelector('.popup');
-let popupContainer = popup.querySelector('.popup__container');
+let popupForm = popup.querySelector('.popup__form');
 let nameInput = popup.querySelector('.popup__item_el_name');
 let statusInput = popup.querySelector('.popup__item_el_status');
 let nickname = content.querySelector('.profile__name');
@@ -42,7 +42,7 @@ function profileEdit (evt) {
   popupClose(evt);
 }
 
-popupContainer.addEventListener('submit', profileEdit, false);
+popupForm.addEventListener('submit', profileEdit, false);
 
 /* функция установки/отмены лайка */
 function like(evt) {
