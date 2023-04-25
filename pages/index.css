@@ -18,6 +18,7 @@
 @import url(../blocks/photo-feed/__list/photo-feed__list.css);
 @import url(../blocks/photo-feed/__item/photo-feed__item.css);
 @import url(../blocks/photo-feed/__image/photo-feed__image.css);
+@import url(../blocks/photo-feed/__del-btn/photo-feed__del-btn.css);
 @import url(../blocks/photo-feed/__data/photo-feed__data.css);
 @import url(../blocks/photo-feed/__heading/photo-feed__heading.css);
 @import url(../blocks/photo-feed/__like-btn/photo-feed__like-btn.css);

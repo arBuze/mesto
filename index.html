@@ -28,55 +28,14 @@
       </section>
       <section class="photo-feed">
         <ul class="photo-feed__list">
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-karachaevsk.jpg" alt="Сентинский храм">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Карачаевск</h2>
-              <button class="photo-feed__like-btn" id="1" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-elbrus.jpg" alt="Гора Эльбрус">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Гора Эльбрус</h2>
-              <button class="photo-feed__like-btn" id="2" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-dombai.jpg" alt="Горы и лес в Домбае">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Домбай</h2>
-              <button class="photo-feed__like-btn" id="3" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-baikal.jpg" alt="Зимний Байкал">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Байкал</h2>
-              <button class="photo-feed__like-btn" id="4" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-komi.jpg" alt="Замерзшая река в лесу">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Республика Коми</h2>
-              <button class="photo-feed__like-btn" id="5" type="button"></button>
-            </div>
-          </li>
-          <li class="photo-feed__item">
-            <img class="photo-feed__image" src="./images/photo-feed-church.jpg" alt="Храм Христа Спасителя">
-            <div class="photo-feed__data">
-              <h2 class="photo-feed__heading">Москва</h2>
-              <button class="photo-feed__like-btn" id="6" type="button"></button>
-            </div>
-          </li>
+          
         </ul>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button class="popup__close-btn" type="button"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
@@ -87,6 +46,28 @@
         </form>
       </div>
     </div>
-    <script src="./scripts/index.js"></script>
+    <div class="popup popup_type_add-photo">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__form" method="post" name="profile-form">
+          <input type="text" placeholder="Никнейм" class="popup__item popup__item_el_name" name="nickname">
+          <input type="text" placeholder="Статус" class="popup__item popup__item_el_status" name="status">
+          <input type="submit" value="Сохранить" class="popup__save-btn" name="save-btn">
+        </form>
+      </div>
+    </div>
+    <template id="photo-card">
+      <li class="photo-feed__item">
+        <img class="photo-feed__image">
+        <button class="photo-feed__del-btn"></button>
+        <div class="photo-feed__data">
+          <h2 class="photo-feed__heading"></h2>
+          <button class="photo-feed__like-btn" type="button"></button>
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/constants.js" defer type="module"></script>
+    <script src="./scripts/index.js" defer type="module"></script>
   </body>
 </html>
