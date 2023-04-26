@@ -28,7 +28,7 @@
       </section>
       <section class="photo-feed">
         <ul class="photo-feed__list">
-          
+
         </ul>
       </section>
     </main>
@@ -40,26 +40,35 @@
         <button class="popup__close-btn" type="button"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <form class="popup__form" method="post" name="profile-form">
-          <input type="text" placeholder="Никнейм" class="popup__item popup__item_el_name" name="nickname">
-          <input type="text" placeholder="Статус" class="popup__item popup__item_el_status" name="status">
+          <input type="text" required placeholder="Никнейм" class="popup__item popup__item_el_name" name="nickname">
+          <input type="text" required placeholder="Статус" class="popup__item popup__item_el_status" name="status">
           <input type="submit" value="Сохранить" class="popup__save-btn" name="save-btn">
         </form>
       </div>
     </div>
-    <div class="popup popup_type_add-photo">
+    <div class="popup popup_type_add-place">
       <div class="popup__container">
         <button class="popup__close-btn" type="button"></button>
-        <h2 class="popup__heading">Редактировать профиль</h2>
+        <h2 class="popup__heading">Новое место</h2>
         <form class="popup__form" method="post" name="profile-form">
-          <input type="text" placeholder="Никнейм" class="popup__item popup__item_el_name" name="nickname">
-          <input type="text" placeholder="Статус" class="popup__item popup__item_el_status" name="status">
-          <input type="submit" value="Сохранить" class="popup__save-btn" name="save-btn">
+          <input type="text" required placeholder="Название" class="popup__item popup__item_el_title" name="title">
+          <input type="text" required placeholder="Ссылка на картинку" class="popup__item popup__item_el_link" name="link">
+          <input type="submit" value="Создать" class="popup__save-btn" name="create-btn">
         </form>
+      </div>
+    </div>
+    <div class="popup popup_type_photo">
+      <div class="popup__container popup__container_type_photo">
+        <button class="popup__close-btn" type="button"></button>
+        <figure class="popup__photo-container">
+          <img class="popup__photo" src="" alt="">
+          <figcaption class="popup__caption"></figcaption>
+        </figure>
       </div>
     </div>
     <template id="photo-card">
       <li class="photo-feed__item">
-        <img class="photo-feed__image">
+        <img class="photo-feed__image" src="" alt="">
         <button class="photo-feed__del-btn"></button>
         <div class="photo-feed__data">
           <h2 class="photo-feed__heading"></h2>
@@ -67,7 +76,7 @@
         </div>
       </li>
     </template>
-    <script src="./scripts/constants.js" defer type="module"></script>
-    <script src="./scripts/index.js" defer type="module"></script>
+    <script src="./scripts/constants.js"></script>
+    <script src="./scripts/index.js"></script>
   </body>
 </html>

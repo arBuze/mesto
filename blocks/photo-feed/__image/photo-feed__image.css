@@ -5,3 +5,7 @@
   object-position: center;
   margin-bottom: 25px;
 }
+
+.photo-feed__image:hover {
+  cursor: pointer;
+}
