@@ -3,7 +3,6 @@ const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
 
 const photoContainer = content.querySelector('.photo-feed__list');
-const cardTemplate = document.querySelector('#photo-card').content;
 
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupFormEdit = popupEditProfile.querySelector('.popup__form');
@@ -11,7 +10,7 @@ const nameInput = popupEditProfile.querySelector('.popup__item_el_name');
 const statusInput = popupEditProfile.querySelector('.popup__item_el_status');
 const nickname = content.querySelector('.profile__name');
 const profileStatus = content.querySelector('.profile__status');
-const EditCloseBtn = popupEditProfile.querySelector('.popup__close-btn');
+const editCloseBtn = popupEditProfile.querySelector('.popup__close-btn');
 
 const popupCreateCard = document.querySelector('.popup_type_add-place');
 const popupFormCreate = popupCreateCard.querySelector('.popup__form');
@@ -24,10 +23,14 @@ const photo = popupShowPhoto.querySelector('.popup__photo');
 const caption = popupShowPhoto.querySelector('.popup__caption');
 const photoCloseBtn = popupShowPhoto.querySelector('.popup__close-btn');
 
+const cardTemplate = document.querySelector('#photo-card').content;
+
 /* функция создания карточки */
 const createCard = (photo, description) => {
-  const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.photo-feed__image').src = photo;
+  const cardElement = cardTemplate.querySelector('.photo-feed__item').cloneNode(true);
+  const photoElement = cardElement.querySelector('.photo-feed__image');
+  photoElement.src = photo;
+  photoElement.alt = description;
   cardElement.querySelector('.photo-feed__heading').textContent = description;
 
   cardElement.querySelector('.photo-feed__image').addEventListener('click', evt => {
@@ -40,13 +43,13 @@ const createCard = (photo, description) => {
     evt.target.parentElement.remove();
   });
 
-  photoContainer.prepend(cardElement);
+  return cardElement;
 }
 
 initialCards.forEach( info => {
   const photo = info.link;
   const description = info.name;
-  createCard(photo, description);
+  photoContainer.append(createCard(photo, description));
 });
 
 /* функция открытия всплывающего окна */
@@ -63,6 +66,8 @@ function popupOpenEdit () {
 function popupOpenPhoto (evt) {
   popupOpen(popupShowPhoto);
   photo.src = evt.target.src;
+  photo.alt = evt.target.alt;
+
   caption.textContent = evt.target.parentElement.querySelector('.photo-feed__heading').textContent;
 }
 
@@ -76,7 +81,7 @@ function popupClose(popupType) {
   popupType.classList.remove('popup_opened');
 }
 
-EditCloseBtn.addEventListener('click', () => {
+editCloseBtn.addEventListener('click', () => {
   popupClose(popupEditProfile);
 });
 createCloseBtn.addEventListener('click', () => {
@@ -104,7 +109,7 @@ function cardAdd(evt) {
   const photo = linkInput.value;
   const description = titleInput.value;
 
-  createCard(photo, description);
+  photoContainer.prepend(createCard(photo, description));
 
   titleInput.value = '';
   linkInput.value = '';
