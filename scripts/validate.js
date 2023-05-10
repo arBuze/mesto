@@ -1,3 +1,12 @@
+const settings = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  submitButtonSelector: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_inactive',
+  inputErrorClass: 'popup__item_type_error',
+  errorClass: 'popup__input-error_active'
+};
+
 const showInputError = (inputElement, errorElement, errorMessage, form) => {
   inputElement.classList.add(form.inputErrorClass);
   errorElement.classList.add(form.errorClass);
@@ -27,14 +36,22 @@ const hasInvalidInput = inputList => {
   });
 };
 
+const disableButton = (button, inactiveButton) => {
+  button.classList.add(inactiveButton);
+  button.setAttribute('disabled', true);
+};
+
+const activateButton = (button, inactiveButton) => {
+  button.classList.remove(inactiveButton);
+  button.removeAttribute('disabled', true);
+};
+
 /* смена состояния кнопки сабмита*/
 const toggleButtonState = (inputList, buttonElement, inactiveButton) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(inactiveButton);
-    buttonElement.setAttribute('disabled', true);
+    disableButton(buttonElement, inactiveButton);
   } else {
-    buttonElement.classList.remove(inactiveButton);
-    buttonElement.removeAttribute('disabled', true);
+    activateButton(buttonElement, inactiveButton);
   }
 };
 
@@ -63,11 +80,12 @@ const enableValidation = (form) => {
   })
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__item',
-  submitButtonSelector: '.popup__save-btn',
-  inactiveButtonClass: 'popup__save-btn_inactive',
-  inputErrorClass: 'popup__item_type_error',
-  errorClass: 'popup__input-error_active'
-});
+enableValidation(settings);
+
+const deleteError = form => {
+  const inputList = Array.from(form.querySelectorAll(settings.inputSelector));
+  inputList.forEach(inputElement => {
+    const errorElement = form.querySelector(`.${inputElement.id}-error`);
+    hideInputError(inputElement, errorElement, settings);
+  });
+};
