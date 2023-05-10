@@ -6,7 +6,3 @@
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   padding: 0 0 10px;
 }
-
-.popup__item:nth-child(2){
-  margin: 30px 0 45px;
-}
