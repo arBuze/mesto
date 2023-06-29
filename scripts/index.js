@@ -136,7 +136,7 @@ function addCard(evt) {
   const cardElement = card.generateCard();
 
   photoContainer.prepend(cardElement);
-  popupCreateCard.reset();
+  popupFormCreate.reset();
 }
 
 popupFormCreate.addEventListener('submit', addCard, false);
