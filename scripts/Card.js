@@ -35,10 +35,12 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._photoElement = this._element.querySelector('.photo-feed__image');
+
     this._setEventListeners();
 
-    this._element.querySelector('.photo-feed__image').src = this._photo;
-    this._element.querySelector('.photo-feed__image').alt = this._description;
+    this._photoElement.src = this._photo;
+    this._photoElement.alt = this._description;
     this._element.querySelector('.photo-feed__heading').textContent = this._description;
 
     return this._element;

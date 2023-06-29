@@ -1,3 +1,7 @@
+import { initialCards, settings } from './constants.js';
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
+
 const content = document.querySelector('.content');
 const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
@@ -10,11 +14,13 @@ const nameInput = popupEditProfile.querySelector('.popup__item_el_name');
 const statusInput = popupEditProfile.querySelector('.popup__item_el_status');
 const nickname = content.querySelector('.profile__name');
 const profileStatus = content.querySelector('.profile__status');
+const popupEditSaveBtn = popupEditProfile.querySelector('.popup__save-btn');
 
 const popupCreateCard = document.querySelector('.popup_type_add-place');
 const popupFormCreate = popupCreateCard.querySelector('.popup__form');
 const titleInput = popupCreateCard.querySelector('.popup__item_el_title');
 const linkInput = popupCreateCard.querySelector('.popup__item_el_link');
+const popupCreateSaveBtn = popupCreateCard.querySelector('.popup__save-btn');
 
 const popupShowPhoto = document.querySelector('.popup_type_photo');
 const photo = popupShowPhoto.querySelector('.popup__photo');
@@ -22,13 +28,13 @@ const caption = popupShowPhoto.querySelector('.popup__caption');
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
-import { initialCards, settings } from './constants.js';
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+const createCard = data => {
+  return new Card('.photo-feed__item', data, openPopupPhoto);
+}
 
 /* добавление начальных карточек */
 initialCards.forEach( info => {
-  const card = new Card('.photo-feed__item', info, openPopupPhoto);
+  const card = createCard(info);
   const cardElement = card.generateCard();
 
   photoContainer.append(cardElement);
@@ -46,15 +52,38 @@ function openPopup(popupType) {
   popupType.classList.add('popup_opened');
 }
 
+/* валидация форм */
+const formList = Array.from(document.querySelectorAll(settings.formSelector));
+formList.forEach(formElement => {
+  formElement.addEventListener('submit', evt => {
+    evt.preventDefault();
+  });
+})
+
+const popupFormCreateValidation = new FormValidator(settings, popupFormCreate);
+popupFormCreateValidation.enableValidation();
+
+const popupFormEditValidation = new FormValidator(settings, popupFormEdit);
+popupFormEditValidation.enableValidation();
+
+const deleteError = form => {
+  const inputList = Array.from(form.querySelectorAll(settings.inputSelector));
+  inputList.forEach(inputElement => {
+    const errorElement = form.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove(settings.inputErrorClass);
+    errorElement.classList.remove(settings.errorClass);
+    errorElement.textContent = '';
+  });
+};
+
 function openPopupEdit () {
   openPopup(popupEditProfile);
   nameInput.value = nickname.textContent;
   statusInput.value = profileStatus.textContent;
-  deleteError(popupFormEdit);
-
-  const button = popupEditProfile.querySelector('.popup__save-btn');
-  button.classList.remove(settings.inactiveButtonClass);
-  button.removeAttribute('disabled', true);
+  popupFormEditValidation.removeValidationErrors();
+  popupFormEditValidation.activateButton();
+/*   popupEditSaveBtn.classList.remove(settings.inactiveButtonClass);
+  popupEditSaveBtn.removeAttribute('disabled', true); */
 }
 
 function openPopupPhoto(evt) {
@@ -68,13 +97,10 @@ function openPopupPhoto(evt) {
 editButton.addEventListener('click', openPopupEdit);
 addButton.addEventListener('click', () => {
   openPopup(popupCreateCard);
-  titleInput.value = '';
-  linkInput.value = '';
+  popupFormCreate.reset();
 
-  const button = popupCreateCard.querySelector('.popup__save-btn');
-  button.classList.add(settings.inactiveButtonClass);
-  button.setAttribute('disabled', true);
-  deleteError(popupFormCreate);
+  popupFormCreateValidation.disableButton();
+  popupFormCreateValidation.removeValidationErrors();
 });
 
 /* функция закрытия всплывающего окна */
@@ -106,34 +132,11 @@ function addCard(evt) {
 
   const link = linkInput.value;
   const name = titleInput.value;
-
-  const card = new Card('.photo-feed__item', {name, link}, openPopupPhoto);
+  const card = createCard({name, link});
   const cardElement = card.generateCard();
-  photoContainer.prepend(cardElement);
 
-  titleInput.value = '';
-  linkInput.value = '';
+  photoContainer.prepend(cardElement);
+  popupCreateCard.reset();
 }
 
 popupFormCreate.addEventListener('submit', addCard, false);
-
-/* валидация форм */
-const formList = Array.from(document.querySelectorAll(settings.formSelector));
-formList.forEach(formElement => {
-  formElement.addEventListener('submit', evt => {
-    evt.preventDefault();
-  });
-  const formValidation = new FormValidator(settings, formElement);
-  formValidation.enableValidation();
-})
-
-const deleteError = form => {
-  const inputList = Array.from(form.querySelectorAll(settings.inputSelector));
-  inputList.forEach(inputElement => {
-    const errorElement = form.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(settings.inputErrorClass);
-    errorElement.classList.remove(settings.errorClass);
-    errorElement.textContent = '';
-  });
-};
-
