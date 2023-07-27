@@ -6,7 +6,7 @@ export default class UserInfo {
 
   getUserInfo() {
     this._infoValues = {};
-    this._infoValues['name'] = this._nameElement.textContent;
+    this._infoValues['nickname'] = this._nameElement.textContent;
     this._infoValues['status'] = this._statusElement.textContent;
     return this._infoValues;
   }

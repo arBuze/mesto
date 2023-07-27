@@ -34,21 +34,11 @@ const settings = {
   errorClass: 'popup__input-error_active'
 };
 
-const content = document.querySelector('.content');
 const editButton = document.querySelector('.profile__edit-btn');
 const addButton = document.querySelector('.profile__add-btn');
 
-const photoContainer = content.querySelector('.photo-feed__list');
-
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
-const popupFormEdit = popupEditProfile.querySelector('.popup__form');
-const nameInput = popupEditProfile.querySelector('.popup__item_el_name');
-const statusInput = popupEditProfile.querySelector('.popup__item_el_status');
-
-const popupCreateCard = document.querySelector('.popup_type_add-place');
-const popupFormCreate = popupCreateCard.querySelector('.popup__form');
-
 const formList = Array.from(document.querySelectorAll(settings.formSelector));
+const formValidators = {};
 
 const cardListSelector = '.photo-feed__list';
 const nameSelector = '.profile__name';
@@ -57,5 +47,5 @@ const popupAddCardSelector = '.popup_type_add-place';
 const popupProfileSelector = '.popup_type_edit-profile';
 const popupPhotoSelector = '.popup_type_photo';
 
-export { initialCards, settings, editButton, addButton, photoContainer, popupFormEdit, nameInput, statusInput, popupFormCreate, formList,
+export { initialCards, settings, editButton, addButton, formList, formValidators,
    cardListSelector, nameSelector, statusSelector, popupAddCardSelector, popupProfileSelector, popupPhotoSelector };
