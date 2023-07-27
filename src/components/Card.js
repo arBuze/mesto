@@ -1,10 +1,10 @@
 export default class Card {
-  constructor(templateSelector, data, openPopupPhoto) {
+  constructor(templateSelector, data, handleCardClick) {
     this._templateSelector = templateSelector;
     this._photo = data.link;
     this._description = data.name;
     this._cardTemplate = document.querySelector('#photo-card').content;
-    this._openPopupPhoto = openPopupPhoto;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -19,7 +19,7 @@ export default class Card {
     evt.target.parentElement.remove();
   }
   _handlePhotoPopupOpen(evt) {
-    this._openPopupPhoto(evt);
+    this._handleCardClick(evt);
   }
   _setEventListeners() {
     this._element.querySelector('.photo-feed__del-btn').addEventListener('click', evt => {

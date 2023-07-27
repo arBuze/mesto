@@ -4,17 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="логотип 'Место'">
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип 'Место'">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__container">
           <div class="profile__information">
-            <img class="profile__avatar" src="./images/profile-image.jpg" alt="аватар профиля">
+            <img class="profile__avatar" src="<%=require('./images/profile-image.jpg')%>" alt="аватар профиля">
             <div class="profile__info">
               <div class="profile__item">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -65,14 +64,14 @@
       <div class="popup__container popup__container_type_photo">
         <button class="popup__close-btn" type="button"></button>
         <figure class="popup__photo-container">
-          <img class="popup__photo" src="./images/logo.svg" alt="">
+          <img class="popup__photo" src="<%=require('./images/profile-image.jpg')%>" alt="">
           <figcaption class="popup__caption"></figcaption>
         </figure>
       </div>
     </div>
     <template id="photo-card">
       <li class="photo-feed__item">
-        <img class="photo-feed__image" src="./images/logo.svg" alt="">
+        <img class="photo-feed__image" src="<%=require('./images/profile-image.jpg')%>" alt="">
         <button class="photo-feed__del-btn" type="button"></button>
         <div class="photo-feed__data">
           <h2 class="photo-feed__heading"></h2>
@@ -80,9 +79,5 @@
         </div>
       </li>
     </template>
-    <script type="module" src="./scripts/constants.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
