@@ -11,6 +11,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import PopupDelete from '../components/PopupDelete';
 
+let userId;
+
 /* валидация форм */
 const enableValidation = settings => {
   formList.forEach(formElement => {
@@ -34,17 +36,6 @@ const api = new Api({
 
 const userInfo = new UserInfo({nameSelector, statusSelector, avatarSelector});
 
-/* получение информации о пользователе */
-api.getUserInfo()
-  .then(result => {
-    userInfo.setUserInfo(result.name, result.about);
-    userInfo.setUserAvatar(result.avatar);
-  })
-  .catch( err => {
-    console.log(err);
-  });
-/* ------------------------------------------- */
-
 const renderLoading = (button, text) => {
   button.value = text;
 }
@@ -57,11 +48,11 @@ const formProfile = new PopupWithForm({
     userInfo.setUserInfo(formValues.nickname, formValues.status);
     renderLoading(submitButton, 'Сохранение...');
     api.saveUserInfo(formValues.nickname, formValues.status)
+      .then(() => {formProfile.close();})
       .catch( err => {
         console.log(err);
       })
       .finally(() => {
-        formProfile.close();
         renderLoading(submitButton, 'Сохранить');
       });
   }
@@ -86,11 +77,11 @@ const formCreateCard = new PopupWithForm({
 
         cardList.prependItem(cardElement);
       })
+        .then(() => {formCreateCard.close();})
         .catch( err => {
           console.log(err);
         })
         .finally(() => {
-          formCreateCard.close();
           renderLoading(submitButton, 'Создать');
         });
 
@@ -108,11 +99,11 @@ const formEditAvatar = new PopupWithForm({
     userInfo.setUserAvatar(link);
     renderLoading(submitButton, 'Сохранение...');
     api.saveAvatar(link)
+      .then(() => {formEditAvatar.close();})
       .catch( err => {
        console.log(err);
       })
       .finally(() => {
-        formEditAvatar.close();
         renderLoading(submitButton, 'Сохранить');
       });
 
@@ -130,7 +121,10 @@ popupWithPhoto.setEventListeners();
 const popupDelete = new PopupDelete(popupDeleteSelector, {
   handleCardDelete: (cardElement, cardId) => {
     api.deleteCard(cardId)
-    .then(cardElement.remove())
+    .then(() => {
+      cardElement.handleDelete();
+      popupDelete.close();
+    })
     .catch( err => {
       console.log(err);
     });
@@ -145,7 +139,7 @@ const handleCardClick = (name, link) => {
 }
 
 const createCard = data => {
-  const card = new Card('#photo-card', data, handleCardClick,{
+  const card = new Card('#photo-card', data, userId, handleCardClick,{
     handleDeleteBtnClick: (cardElement, cardId) => {
       popupDelete.open(cardElement, cardId);
     },
@@ -180,9 +174,15 @@ const cardList = new Section({
     }
   }, cardListSelector);
 
-api.getInitialCards()
-  .then(result => {
-    cardList.renderItems(result);
+
+/* получение информации пользователя и начальных карточек */
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardsData]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
+
+    cardList.renderItems(cardsData);
   })
   .catch( err => {
     console.log(err);

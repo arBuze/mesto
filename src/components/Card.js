@@ -1,11 +1,12 @@
 export default class Card {
-  constructor(templateSelector, data, handleCardClick,{ handleDeleteBtnClick, handleLikeBtnClick }) {
+  constructor(templateSelector, data, userId, handleCardClick,{ handleDeleteBtnClick, handleLikeBtnClick }) {
     this._templateSelector = templateSelector;
     this._data = data;
     this._photo = data.link;
     this._description = data.name;
     this._id = data._id;
     this._owner = data.owner._id;
+    this._userId = userId;
     this._cardTemplate = document.querySelector(this._templateSelector).content;
     this._handleCardClick = handleCardClick;
     this._handleDeleteBtnClick = handleDeleteBtnClick;
@@ -20,19 +21,19 @@ export default class Card {
   _handleLike() {
     this._handleLikeBtnClick(this._id, this._isLiked());
   }
-  _handleDelete() {
-    this._handleDeleteBtnClick(this._element, this._id);
+  _handleDeleteClick() {
+    this._handleDeleteBtnClick(this, this._id);
   }
   _handlePhotoPopupOpen() {
     this._handleCardClick(this._description, this._photo);
   }
   _setEventListeners() {
-    if(this._cardIsMine) {
-      this._deleteButton.addEventListener('click', evt => {
-        this._handleDelete();
+    if(this._owner === this._userId) {
+      this._deleteButton.addEventListener('click', () => {
+        this._handleDeleteClick();
       });
     }
-    this._likeButton.addEventListener('click', evt => {
+    this._likeButton.addEventListener('click', () => {
       this._handleLike();
     });
     this._photoElement.addEventListener('click', () => {
@@ -41,7 +42,11 @@ export default class Card {
   }
 
   _isLiked() {
-    return this._likes.find((user) => user._id === 'e9042d29f1da890bf70744e6');
+    return this._likes.find((user) => user._id === this._userId);
+  }
+
+  handleDelete() {
+    this._element.remove();
   }
 
   renderLikes(likes) {
@@ -60,7 +65,6 @@ export default class Card {
     this._likesNumberElement = this._element.querySelector('.photo-feed__likes-num');
     this._likeButton = this._element.querySelector('.photo-feed__like-btn');
     this._deleteButton = this._element.querySelector('.photo-feed__del-btn');
-    this._cardIsMine = (this._owner === 'e9042d29f1da890bf70744e6');
 
     this._setEventListeners();
 
@@ -69,7 +73,7 @@ export default class Card {
     this._element.querySelector('.photo-feed__heading').textContent = this._description;
     this.renderLikes(this._data.likes);
 
-    if(!this._cardIsMine) {
+    if(!(this._owner === this._userId)) {
       this._deleteButton.remove();
     }
     return this._element;
