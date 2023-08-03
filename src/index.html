@@ -13,13 +13,15 @@
       <section class="profile">
         <div class="profile__container">
           <div class="profile__information">
-            <img class="profile__avatar" src="<%=require('./images/profile-image.jpg')%>" alt="аватар профиля">
+            <button class="profile__avatar-btn" type="button">
+              <img class="profile__avatar" src="" alt="аватар профиля">
+            </button>
             <div class="profile__info">
               <div class="profile__item">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <h1 class="profile__name"></h1>
                 <button class="profile__edit-btn" type="button"></button>
               </div>
-              <p class="profile__status">Исследователь океана</p>
+              <p class="profile__status"></p>
             </div>
           </div>
           <button class="profile__add-btn" type="button"></button>
@@ -69,13 +71,34 @@
         </figure>
       </div>
     </div>
+    <div class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <form class="popup__form" method="post" name="avatar-form" novalidate>
+          <input type="url" required placeholder="Ссылка на картинку" class="popup__item popup__item_el_link" name="avatar" id="avatar-link-input">
+          <span class="popup__input-error avatar-link-input-error"></span>
+          <input type="submit" value="Сохранить" class="popup__save-btn" name="edit-avatar-btn">
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_delete">
+      <div class="popup__container">
+        <button class="popup__close-btn" type="button"></button>
+        <h2 class="popup__heading popup__heading_type_confirm">Вы уверены?</h2>
+        <input type="button" value="Да" class="popup__save-btn" name="delete-btn">
+      </div>
+    </div>
     <template id="photo-card">
       <li class="photo-feed__item">
         <img class="photo-feed__image" src="<%=require('./images/profile-image.jpg')%>" alt="">
         <button class="photo-feed__del-btn" type="button"></button>
         <div class="photo-feed__data">
           <h2 class="photo-feed__heading"></h2>
-          <button class="photo-feed__like-btn" type="button"></button>
+          <div class="photo-feed__likes">
+            <button class="photo-feed__like-btn" type="button"></button>
+            <span class="photo-feed__likes-num">1</span>
+          </div>
         </div>
       </li>
     </template>
